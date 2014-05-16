@@ -1,15 +1,29 @@
 body, html {
   height: 100%;
   width: 100%;
+  min-height: 300px;
+  min-width: 400px;
   margin: 0;
   padding: 0;
   position: absolute;
+  background-color: #eee;
+  overflow: hidden;
+}
+.requires {
+  font-family: monospace;
+  border: 0;
+  outline: 0;
+  margin: 0;
+  padding: 4px 10px;
+  width: 100%;
+  line-height: 12px;
+  font-size: 12px;
   background-color: #eee;
 }
 #target, .CodeMirror {  
   box-sizing: border-box;
   width: 48%;  
-  height: 70% !IMPORTANT;
+  height: 70%;
   margin: 1%; 
   float: left;
   background-color: #fff;
@@ -19,19 +33,23 @@ body, html {
 body {
   overflow-x: hidden;
 }
-#target {
+#render {
   padding: 10px;
   overflow: auto;
 }
-#debug {
+#log {
+  font-family: monospace;
+  display: block;
+  box-sizing: border-box;
+  clear: both;
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
   background-color: #fff;
   height: 20%;
-  position: absolute;
-  bottom: 0;
   border-top: 1px solid #aaa;
+  z-index: 9999;
+  overflow-y: scroll;
 }
 .fork {
   position: absolute;

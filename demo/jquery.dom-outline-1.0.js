@@ -53,7 +53,7 @@ var DomOutline = function (options) {
                 '.' + self.opts.namespace + ' {' +
                 '    background: #09c;' +
                 '    position: absolute;' +
-                '    z-index: 1000000;' +
+                '    z-index: 999;' +
                 '}' +
                 '.' + self.opts.namespace + '_label {' +
                 '    background: #09c;' +

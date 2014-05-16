@@ -10,6 +10,8 @@
     <link href="codemirror/neo.css" rel="stylesheet"/> 
   </head>
   <body>
+    <p class="requires">&lt;script src="<a href="http://jquery.com/">jquery.js</a>"&gt;&lt;/script&gt;</p>
+    <p class="requires">&lt;script src="<a href="https://github.com/andrewchilds/jQuery.DomOutline">jquery.dom-outline-1.0.js</a>"&gt;&lt;/script&gt;</p>
     <textarea id="html">
 <div id="demo">
   <h1 id="title">jQuery.Dom-Outline</h1>
@@ -18,14 +20,12 @@
      <li><a href="https://github.com/andrewchilds/jQuery.DomOutline">Source Code</a></li>
      <li><a href="http://jquery.com/">jQuery</a></li>
   </ol>
-  <p>Mouse over this area to see the magic happens.</p>
   <p class="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div>
-<script src="jquery.js"></script>
-<script src="jquery.dom-outline-1.0.js"></script>      
+</div>     
+      
 <script>
   var myExampleClickHandler = function(event){ 
-    $('#debug').html([
+    $('#log').html([
       '<b>Element:</b> ', 
       this.label, 
       this.textContent
@@ -34,7 +34,7 @@
   };
   var myDomOutline = DomOutline({ 
     onClick: myExampleClickHandler, 
-    filter: '#demo *',
+    filter: false,
     stopOnClick: false,
     hideLabel: false
   });
@@ -42,8 +42,21 @@
 </script>
     </textarea>
     
-    <div id="target"></div>
-    <div id="debug">Debug</div>
+    <div id="render"></div>
+    <div id="log">
+      <pre>var myDomOutline = false;
+var editor = CodeMirror.fromTextArea(html, {
+  mode: 'text/html', 
+  theme: 'neo',
+  lineNumbers: true
+});
+var render = function(){ 
+  if(myDomOutline) myDomOutline.stop();
+  $('#render').html(editor.getValue()); 
+};
+editor.on('changes',render);
+render();</pre>
+    </div>
     
     <a href="https://github.com/andrewchilds/jQuery.DomOutline"><img src="fork.png" class="fork"/></a>
 
@@ -65,7 +78,7 @@
       });
       var render = function(){ 
         if(myDomOutline) myDomOutline.stop();
-        $('#target').html(editor.getValue()); 
+        $('#render').html(editor.getValue()); 
       };
       editor.on('changes',render);
       render();

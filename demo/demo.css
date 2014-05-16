@@ -2,7 +2,6 @@ body, html {
   height: 100%;
   width: 100%;
   min-height: 300px;
-  min-width: 400px;
   margin: 0;
   padding: 0;
   position: absolute;
@@ -20,18 +19,15 @@ body, html {
   font-size: 12px;
   background-color: #eee;
 }
-#target, .CodeMirror {  
+#render, .CodeMirror {  
   box-sizing: border-box;
-  width: 48%;  
-  height: 70%;
-  margin: 1%; 
+  width: calc(50% - 10px);  
+  height: calc(70% - 40px);
+  margin: 5px; 
   float: left;
   background-color: #fff;
   box-shadow: 0 0 10px black;
   border-radius: 4px;
-}
-body {
-  overflow-x: hidden;
 }
 #render {
   padding: 10px;
@@ -42,14 +38,18 @@ body {
   display: block;
   box-sizing: border-box;
   clear: both;
-  padding: 10px;
+  padding: 5px;
+  margin: 0;
   width: 100%;
   box-sizing: border-box;
   background-color: #fff;
-  height: 20%;
+  height: calc(30% - 5px);
   border-top: 1px solid #aaa;
   z-index: 9999;
   overflow-y: scroll;
+}
+#log pre {
+  margin: 0;
 }
 .fork {
   position: absolute;
@@ -58,4 +58,20 @@ body {
   margin: 0;
   padding: 0;
   z-index: 1000001;
+}
+@media (max-width: 400px) {
+  body {
+    overflow-x: scroll;
+  }
+}
+@media (max-height: 300px) {
+  body {
+    overflow-y: scroll;
+  }
+}
+@media (max-height: 300px), (max-width: 400px) {
+  #render, .CodeMirror {
+    width: calc(100% - 10px);
+    float: none;
+  }
 }
